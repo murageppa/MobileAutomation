@@ -35,7 +35,7 @@ public class AppiumUtils {
             if (!elements.isEmpty() && elements.get(0).isDisplayed()) return;
             scrollDown(driver);
             i++;
-            AppiumUtils.scrollDown(driver);
+            scrollDown(driver);
         }
         Assert.fail("Did not find : " + byOfElementToBeFound.toString());
     }
@@ -93,6 +93,7 @@ public class AppiumUtils {
 
     /**
      * Scroll down to particular element
+     *
      * @param byOfElementToScrollOn
      * @param driver
      */
@@ -111,6 +112,7 @@ public class AppiumUtils {
 
     /**
      * General swipe function based on the co-ordinates
+     *
      * @param startX
      * @param startY
      * @param endX
@@ -210,8 +212,6 @@ public class AppiumUtils {
         PointerInput finger = new PointerInput(PointerInput.Kind.TOUCH, "finger");
         Sequence tap = new Sequence(finger, 1);
         tap.addAction(finger.createPointerMove(Duration.ofMillis(0), PointerInput.Origin.viewport(), x, y));
-        driver.perform(List.of(tap));
-        //performing tap action again to handle native webDriverAgent notification for copyIcon functionality
         driver.perform(List.of(tap));
     }
 
